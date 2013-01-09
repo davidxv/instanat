@@ -6,12 +6,17 @@ task :check_if_new_photos_available => :environment do
 	Dropbox::API::Config.app_secret = config["dropbox_secret"]
 
 	client = Dropbox::API::Client.new(:token => config["dropbox_oauth_token"], :secret => config["dropbox_oauth_secret"])
-	client.ls.each do |file|
+	last_photo = Photo.order("modified_at").last
+	delta = client.delta(last_photo.cursor)
+	delta.entries.each do |file|
 		photo = Photo.where(:path => file.path)
 		if photo.empty?
 			media = file.direct_url
-			photo = Photo.new(:path => file.path, :modified_at => file.modified, :media_url => media.url, :media_url_expires_at => media.expires, :media_url_fetched_at => DateTime.now)
+			photo = Photo.new(:path => file.path, :modified_at => file.modified, :media_url => media.url, :media_url_expires_at => media.expires, :media_url_fetched_at => DateTime.now, :cursor => delta.cursor)
 
+			# all the smart stuff below comes from edouard
+			# https://gist.github.com/1787879
+			
 			TOP_N = 10           # Number of swatches
 			 
 			# Create a 1-row image that has a column for every color in the quantized
