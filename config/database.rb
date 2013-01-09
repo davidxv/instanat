@@ -23,7 +23,8 @@ ActiveRecord::Base.configurations[:development] = {
 }
 
 ActiveRecord::Base.configurations[:production] = {
-  :adapter   => 'postgresql'
+  :adapter   => 'postgresql',
+  :database  => 'instanat'
 }
 
 # Setup our logger
