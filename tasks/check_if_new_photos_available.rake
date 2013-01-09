@@ -6,7 +6,11 @@ task :check_if_new_photos_available => :environment do
 
 	client = Dropbox::API::Client.new(:token => ENV["DROPBOX_OAUTH_TOKEN"], :secret => ENV["DROPBOX_OAUTH_SECRET"])
 	last_photo = Photo.order("modified_at").last
-	delta = client.delta(last_photo.cursor)
+	unless last_photo.nil?
+		delta = client.delta(last_photo.cursor)
+	else 
+		delta = client.delta
+	end
 	delta.entries.each do |file|
 		photo = Photo.where(:path => file.path)
 		if photo.empty?
