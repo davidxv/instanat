@@ -1,21 +1,20 @@
 desc "fetch new media urls for those photos that need them"
 task :fetch_new_media_urls => :environment do
-	config = YAML.load_file("./global_config.yml") rescue nil || {}
 
 	# we fetch the files ordered by the modification date in Dropbox
 	photos = []
-	if config["photos_to_display"] == 1
-		photos << Photo.order("modified_at DESC").first
-	else
-		photos = Photo.order("modified_at DESC").limit(config["photos_to_display"])
-	end
+	#if config["photos_to_display"] == 1
+	photos << Photo.order("modified_at DESC").first
+	#else
+	#	photos = Photo.order("modified_at DESC").limit(config["photos_to_display"])
+	#end
 
 	# settings first so we don't repeat them if we increase the photo limit
 
-	Dropbox::API::Config.app_key    = config["dropbox_key"]
-	Dropbox::API::Config.app_secret = config["dropbox_secret"]
+	Dropbox::API::Config.app_key    = ENV["DROPBOX_KEY"]
+	Dropbox::API::Config.app_secret = ENV["DROPBOX_SECRET"]
 
-	client = Dropbox::API::Client.new(:token => config["dropbox_oauth_token"], :secret => config["dropbox_oauth_secret"])
+	client = Dropbox::API::Client.new(:token => ENV["DROPBOX_OAUTH_TOKEN"], :secret => ENV["DROPBOX_OAUTH_SECRET"])
 
 	photos.each do |photo|
 		# I can never remeber how to do time maths in Ruby

@@ -1,11 +1,10 @@
 desc "check if there are any new photos, if so we save them"
 task :check_if_new_photos_available => :environment do
-	config = YAML.load_file("./global_config.yml") rescue nil || {}
 
-	Dropbox::API::Config.app_key    = config["dropbox_key"]
-	Dropbox::API::Config.app_secret = config["dropbox_secret"]
+	Dropbox::API::Config.app_key    = ENV["DROPBOX_KEY"]
+	Dropbox::API::Config.app_secret = ENV["DROPBOX_SECRET"]
 
-	client = Dropbox::API::Client.new(:token => config["dropbox_oauth_token"], :secret => config["dropbox_oauth_secret"])
+	client = Dropbox::API::Client.new(:token => ENV["DROPBOX_OAUTH_TOKEN"], :secret => ENV["DROPBOX_OAUTH_SECRET"])
 	last_photo = Photo.order("modified_at").last
 	delta = client.delta(last_photo.cursor)
 	delta.entries.each do |file|
@@ -16,7 +15,7 @@ task :check_if_new_photos_available => :environment do
 
 			# all the smart stuff below comes from edouard
 			# https://gist.github.com/1787879
-			
+
 			TOP_N = 10           # Number of swatches
 			 
 			# Create a 1-row image that has a column for every color in the quantized
