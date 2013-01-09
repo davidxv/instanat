@@ -5,5 +5,6 @@ bin/*
 vendor/gems/*
 !vendor/gems/cache/
 .sass-cache/*
+.powrc
 global_config.yml
 public/stylesheets/255115_0_0.*
