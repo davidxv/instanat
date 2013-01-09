@@ -9,4 +9,4 @@ gem 'pg'
 gem 'padrino', '0.10.7'
 
 gem 'dropbox-api'
-gem 'rmagick'
+gem 'rmagick', :require => 'RMagick'

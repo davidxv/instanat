@@ -1,3 +1,5 @@
+require 'RMagick'
+
 desc "check if there are any new photos, if so we save them"
 task :check_if_new_photos_available => :environment do
 
