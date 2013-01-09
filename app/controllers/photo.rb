@@ -1,4 +1,5 @@
 Instanat.controllers :photo do
+  layout :app
 
   get :index do
   end
