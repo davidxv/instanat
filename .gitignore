@@ -7,3 +7,4 @@ vendor/gems/*
 .sass-cache/*
 config/database.rb
 global_config.yml
+public/stylesheets/255115_0_0.*

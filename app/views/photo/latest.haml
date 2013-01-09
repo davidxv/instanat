@@ -1,3 +1,30 @@
-%h1 HI THERE
+- colours = @photos.first.colours.gsub(/[\[\]"\\]/, "").split(",")
+.strip
+	%ul
+		- colours.each do |colour|
+			%li{:style => "background-color: #{colour}; width: #{100/colours.length}%"}
+%h1 instanat
+%h2 forgetting one image at a time
 - @photos.each do |photo|
-	%img{:src => photo.media_url}
+	- degree = rand(-2..2)
+	:css
+		body {
+			color: #{colours[-6]};
+		}
+		h1 {
+			color: #{colours[3]};
+		}
+		a {
+			color: #{colours[-3]};
+		}
+		a:hover {
+			color: #{colours[-4]};
+		}
+		.printout {
+			-webkit-transform: rotate(#{degree}deg);
+			-moz-transform: rotate(#{degree}deg);
+		}
+
+	.printout
+		%img#photo{:src => photo.media_url}
+		.gradient

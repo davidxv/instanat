@@ -1,2 +1,12 @@
-%h1 hi this is cat
-= yield
+!!!
+%html
+	%head
+		%title instanat
+		= javascript_include_tag :application
+		= stylesheet_link_tag :style
+
+	%body
+
+		.content
+			= yield
+			%p a fleeting photo communication thing by <a href="http://ntlk.net">ntlk</a>
