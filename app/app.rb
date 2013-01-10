@@ -5,9 +5,8 @@ class Instanat < Padrino::Application
   register Padrino::Helpers
 
   configure do
-    config = YAML.load_file("./global_config.yml") rescue nil || {}
 
-    set :photos_to_display, config["photos_to_display"]
+    set :photos_to_display, 1
 
   end
   

@@ -1,5 +1,0 @@
-photos_to_display: 1
-dropbox_key: 'APP_KEY'
-dropbox_secret: 'APP_SECRET'
-dropbox_oauth_token: 'OAUTH_TOKEN'
-dropbox_oauth_secret: 'OAUTH_SECRET'
