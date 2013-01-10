@@ -5,7 +5,7 @@ Instanat.controllers :photo do
   end
 
   get :latest, :map => "/" do
-    @photos = Photo.order("modified_at DESC").limit(Instanat.settings.photos_to_display)
+    @photos = Photo.order("modified_at DESC").limit(1)
     render 'photo/latest'
   end
 
