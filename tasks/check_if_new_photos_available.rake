@@ -16,6 +16,7 @@ task :check_if_new_photos_available => :environment do
 	delta.entries.each do |file|
 		photo = Photo.where(:path => file.path)
 		if photo.empty?
+			puts file.inspect
 			media = file.direct_url
 			photo = Photo.new(:path => file.path, :modified_at => file.modified, :media_url => media.url, :media_url_expires_at => media.expires, :media_url_fetched_at => DateTime.now, :cursor => delta.cursor)
 
