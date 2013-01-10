@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Fjord+One);
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
   display: block; }
 
@@ -123,11 +124,6 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
-@font-face {
-  font-family: "Carat-Light";
-  src: url("/stylesheets/255115_0_0.eot");
-  src: url("/stylesheets/255115_0_0.eot?#iefix") format("embedded-opentype"), url("/stylesheets/255115_0_0.woff") format("woff"), url("/stylesheets/255115_0_0.ttf") format("truetype"); }
-
 img {
   max-width: 100%; }
 
@@ -139,7 +135,7 @@ body {
   text-align: center;
   background: url(/images/furley_bg.png);
   background-color: white;
-  font-family: "Carat-Light", Georgia, Droid Serif, Times New Roman, serif; }
+  font-family: "Fjord One", Georgia, Droid Serif, Times New Roman, serif; }
 
 h1 {
   font-size: 3em;
