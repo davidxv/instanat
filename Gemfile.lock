@@ -60,7 +60,7 @@ GEM
       padrino-core (= 0.10.7)
     pg (0.13.2)
     polyglot (0.3.3)
-    rack (1.4.3)
+    rack (1.5.2)
     rack-protection (1.2.0)
       rack
     rake (10.0.3)
